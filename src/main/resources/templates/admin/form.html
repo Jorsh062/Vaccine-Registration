@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Create User</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link  rel="stylesheet" th:href="@{cover.css}">
+</head>
+<body>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            </nav>
+        </div>
+    </header>
+    <section class="content">
+        <div class="container-fluid" style="margin-top: 20px">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Create New User</h3>
+                            <p class="alert-danger" th:if="${emailError} != null" th:text="${emailError}"></p>
+                        </div>
+                        <form th:object="${user}" th:action="@{'/admin/create'}" method="post">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleFirstName">First Name</label>
+                                    <input type="text" class="form-control" id="exampleFirstName" required th:field="*{firstName}" placeholder="Enter First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleLastName">Last Name</label>
+                                    <input type="text" class="form-control" id="exampleLastName" required th:field="*{lastName}"placeholder="Enter Last Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" required th:field="*{email}" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" required th:field="*{password}" placeholder="Enter password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirm_password" required placeholder="Enter password">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label>Select Role:</label>
+                                    <select class="form-control" th:field="*{roles}">
+                                        <option th:each="role: ${roleSet}"
+                                                th:value="${role.id}"
+                                                th:text="${role.name}">val</option>
+                                    </select>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+</body>
+</html>

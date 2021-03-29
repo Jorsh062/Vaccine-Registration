@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard</title>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link  rel="stylesheet" th:href="@{cover.css}">
+</head>
+<div>
+<header class="masthead mb-auto">
+    <div class="inner">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/admin/create}" >Create User</a>
+                    </li>
+                </ul>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout"/>
+            </form>
+            </div>
+        </nav>
+    </div>
+</header>
+</div>
+<br>
+<div class="card" style="height: 300px; width: 100%">
+    <div class="row">
+        <h3 align="center">Vaccination Analysis</h3>
+        <br>
+        <br>
+        <br>
+        <div class="col-sm-6">
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        </div>
+    <div class="col-sm-6">
+        <div id="newChartContainer" style="height: 300px; width: 100%;"></div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h2 align="center"> By State</h2>
+    <table class="table table-striped" style="width: 60%" align="center">
+        <thead class="table-dark">
+        <tr style="text-align: center">
+            <td>State</td>
+            <td>Frequency</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="text-align: center" th:each="state : ${T(com.example.vacc_reg.model.State).values()}">
+            <td th:text="${state.name}"></td>
+            <td th:text="${applicationService.countApplicationsByState(state)}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer",
+            {
+                title:{
+                    text: "By Gender"
+                },
+                legend: {
+                    maxWidth: 300,
+                    itemWidth: 120
+                },
+                data: [
+                    {
+                        type: "pie",
+                        showInLegend: true,
+                        legendText: "{indexLabel}",
+                        dataPoints: [
+                            { y: 80, indexLabel: "Male" },
+                            { y: 40, indexLabel: "Female" },
+                        ]
+                    }
+                ]
+            }
+        );
+        chart.render();
+
+        var chart1 = new CanvasJS.Chart("newChartContainer",
+            {
+                title:{
+                    text: "By Status"
+                },
+                legend: {
+                    maxWidth: 300,
+                    itemWidth: 120
+                },
+                data: [
+                    {
+                        type: "pie",
+                        showInLegend: true,
+                        legendText: "{indexLabel}",
+                        dataPoints: [
+                            { y: 100, indexLabel: "Vaccinated" },
+                            { y: 40, indexLabel: "Not Vaccinated" },
+                        ]
+                    }
+                ]
+            }
+        );
+        chart1.render();
+    }
+</script>
+</body>
+
+</html>

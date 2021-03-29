@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration Details</title>
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+
+<body>
+<header class="masthead mb-auto">
+    <div class="inner">
+        <!--nav class="navbar navbar-expand-sm bg-dark navbar-dark" >
+            <a class="nav-link active" href="#" th:href="@{/index}">Home</a>
+            <a class="nav-link" href="#">Vaccination Status</a>
+            <a class="nav-link" href="#" >Health Officials</a>
+        </nav-->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout"/>
+            </form>
+        </nav>
+    </div>
+</header>
+
+<div class="container col-md-9">
+    <h1>Vaccine Registration Details</h1>
+
+    <table border="2" class = "table table-striped table-responsive-md">
+        <thead class="thead-dark">
+        <tbody>
+        <tr>
+            <th>ID</th>
+            <td th:text="${applications.id}"></td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td th:text="${applications.user.getFirstName()}"></td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td th:text="${applications.user.getLastName()}"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td th:text="${applications.user.getEmail()}"></td>
+        </tr>
+        <tr>
+            <th>Residential Address</th>
+            <td th:text="${applications.residentialAddress}"></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td th:text="${applications.gender}"></td>
+        </tr>
+        <tr>
+            <th>Date of Birth</th>
+            <td th:text="${applications.dateOfBirth}"></td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td th:text="${applications.state}"></td>
+        </tr>
+        <tr>
+            <th>L.G.A</th>
+            <td th:text="${applications.lga}"></td>
+        </tr>
+        <tr>
+            <th>Id_Type</th>
+            <td th:text="${applications.id_type}"></td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>
+                <p th:if="${applications.status}==${T(com.example.vacc_reg.model.Status).NOT_VACCINATED}" >Registered</p>
+                <p th:if="${applications.status}==${T(com.example.vacc_reg.model.Status).VACCINATED}" >Vaccinated</p>
+            </td>
+
+        </tr>
+        <tr>
+            <th>Scheduled Date</th>
+            <td th:text="${applications.vaccinationDate}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

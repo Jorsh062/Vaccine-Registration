@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration List</title>
+    <!-- Theme style -->
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+
+    <style>
+        table, th, td {
+            border: 2px solid darkslategrey;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<header class="masthead mb-auto">
+    <div class="inner">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout"/>
+            </form>
+        </nav>
+    </div>
+</header>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <span class="card-title" style="font-size: 32px"><strong>Vaccine Registration</strong></span>
+                        <span><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"></span>
+                    </div>
+                    <br>
+                    <table>
+                        <thead style="text-emphasis: #0c63e4">
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Residential Address</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                            <th>State</th>
+                            <th>L.G.A</th>
+                            <th>Id_Type</th>
+                            <th>Status</th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        <tr th:each="book: ${applications}">
+                            <td th:text="${book.id}" th:href="@{'/change_status/' + ${book.id}}"></td>
+                            <td th:text="${book.user.getFirstName()}"></td>
+                            <td th:text="${book.user.getLastName()}"></td>
+                            <td th:text="${book.user.getEmail()}"></td>
+                            <td th:text="${book.residentialAddress}"></td>
+                            <td th:text="${book.gender}"></td>
+                            <td th:text="${book.dateOfBirth}"></td>
+                            <td th:text="${book.state}"></td>
+                            <td th:text="${book.lga}"></td>
+                            <td th:text="${book.id_type}"></td>
+                            <td  >
+                                <a th:if="${book.status}==${T(com.example.vacc_reg.model.Status).NOT_VACCINATED}"
+                                   th:href="@{'/verify/' + ${book.id}}" >NOT VACCINATED</a>
+                                <p th:if="${book.status}==${T(com.example.vacc_reg.model.Status).VACCINATED}">VACCINATED</p>
+                            </td>
+                            <td th:text="${book.id_type}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

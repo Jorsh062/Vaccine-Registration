@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewreport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Vaccine Registration
+    </title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+<div class="container-fluid banner">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-md">
+                <div class="navbar-brand">SPITAL</div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/verify}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:if="${currentUser} !=null" class="nav-link" href="#" th:href="@{'/status/' + ${currentUser.id}}" >Vaccination Status</a>
+                        <a th:if="${currentUser} ==null" class="nav-link" href="/login" >Check Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">HEALTH OFFICIALS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ADMIN</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-8 offset-md-2 info">
+            <h1 class="text-center">WELCOME TO THE VACCINE REGISTRATION PORTAL</h1>
+            <p class="text-center">
+                This is the official vaccine registration site nationwide where you can choose your preferred date of vaccination
+            </p>
+            <p>Click Apply below to sign-in</p>
+            <a href="#" class="btn btn-md text-center" th:href="@{'/register'}">APPLY</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

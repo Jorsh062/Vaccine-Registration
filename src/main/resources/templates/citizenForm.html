@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Registration</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link  rel="stylesheet" th:href="@{cover.css}">
+</head>
+<body>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <!--nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <a class="nav-link active" href="#" th:href="@{/}">Home</a>
+                <a class="nav-link" href="#">Vaccination Status</a>
+                <a class="nav-link" href="#" th:href="@{/login}" >Health Officials</a>
+            </nav-->
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            </nav>
+        </div>
+    </header>
+    <section class="content" style="width: 100%; padding-left:10%; padding-right: 10%" >
+        <div class="container-fluid" style="margin-top: 20px">
+            <div class="row">
+            <!-- left column -->
+                <div>
+                <!-- general form elements -->
+                    <div class="card card-primary" >
+                        <div class="card-header">
+                            <h3 class="card-title">Vaccine Registration</h3>
+                            <p class="alert-danger" th:if="${emailError} != null" th:text="${emailError}"></p>
+                        </div>
+                        <form th:object="${citizen}" th:action="@{'/register'}" method="post">
+                            <div class="card-body" >
+                                <div class="form-group"  >
+                                    <label for="exampleFirstName">First Name</label>
+                                    <input type="text" class="form-control" id="exampleFirstName" required th:field="*{firstName}" placeholder="Enter First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleLastName">Last Name</label>
+                                    <input type="text" class="form-control" id="exampleLastName" required th:field="*{lastName}"placeholder="Enter Last Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" required th:field="*{email}" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" required th:field="*{password}" placeholder="Enter password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirm_password" required placeholder="Enter password">
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+</body>
+</html>
+

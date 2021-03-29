@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>The Official Vaccination Page</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link  rel="stylesheet" th:href="@{cover.css}">
+</head>
+
+<body class="text-center">
+
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <!--nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <a class="nav-link active" href="#" th:href="@{/}">Home</a>
+                <a class="nav-link" href="#">Vaccination Status</a>
+                <a class="nav-link" href="#" th:href="@{/login}" >Health Officials</a>
+            </nav-->
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" th:href="@{/verify}">Health Officials</a>
+                        </li>
+                        <li class="nav-item">
+                            <!--a th:if="${currentUser} !=null" class="nav-link" href="#" th:href="@{'/status/' + ${currentUser.id}}" >Vaccination Status</a>
+                            <a th:if="${currentUser} ==null" class="nav-link" href="/login" >Check Status</a-->
+                            <a class="nav-link" href="#" th:href="@{/status}">Check Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" th:href="@{/admin}">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 class="cover-heading">Welcome To the Official Vaccination Registration Portal.</h1>
+        <p class="lead"> This is the official portal for vaccine registration nationwide. Choose your preferred vaccination date.
+            </p>
+        <p>Click Apply to sign-up</p>
+        <p></p>
+        <p class="lead">
+            <a href="#"  class="btn btn-lg btn-secondary" th:href="@{'/register'}">Apply</a>
+            <!--a href="#"  class="btn btn-lg btn-secondary" th:href="@{'/view_status'}">View Status</a>
+            <a href="#"  class="btn btn-lg btn-secondary" th:href="@{'/update'}">Vaccine Update</a-->
+        </p>
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+        </div>
+    </footer>
+</div>
+</body>
+</html>

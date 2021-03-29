@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>New Created User</title>
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+
+<body>
+<header class="masthead mb-auto">
+    <div class="inner">
+        <!--nav class="navbar navbar-expand-sm bg-dark navbar-dark" >
+            <a class="nav-link active" href="#" th:href="@{/index}">Home</a>
+            <a class="nav-link" href="#">Vaccination Status</a>
+            <a class="nav-link" href="#" >Health Officials</a>
+        </nav-->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout"/>
+            </form>
+        </nav>
+    </div>
+</header>
+
+<div class="container my-2">
+    <h1>Newly Created User</h1>
+
+    <table border="1" class = "table table-striped">
+        <thead class="thead-dark">
+        <tbody>
+        <tr>
+            <td class="thead-dark">ID</td>
+            <td th:text="${user.id}"></td>
+        </tr>
+        <tr>
+            <td class="thead-dark">First Name</td>
+            <td th:text="${user.getFirstName()}"></td>
+        </tr>
+        <tr>
+            <td class="thead-dark">Last Name</td>
+            <td th:text="${user.getLastName()}"></td>
+        </tr>
+        <tr>
+            <td class="thead-dark">Email</td>
+            <td th:text="${user.getEmail()}"></td>
+        </tr>
+        <tr>
+            <td class="thead-dark">Role</td>
+            <td th:text="${user.getRoles().getName()}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

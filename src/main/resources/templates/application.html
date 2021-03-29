@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Application Form</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link  rel="stylesheet" th:href="@{cover.css}">
+</head>
+<body>
+<header class="masthead mb-auto">
+    <div class="inner">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout"/>
+            </form>
+        </nav>
+    </div>
+</header>
+<section class="content" style="width: 100%; padding-left:10%; padding-right: 10%">
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Vaccine Registration</h3>
+                    </div>
+                    <form th:object="${application}" th:action="@{'/apply/save'}" method="post">
+                            <div class="form-group">
+                                <label for="exampleInputResidentialAddress">Residential Address</label>
+                                <input type="text" class="form-control" id="exampleInputResidentialAddress" required th:field="*{residentialAddress}" placeholder="Enter address">
+                            </div>
+                            <div class="form-group">
+                                <label>Gender:</label>
+                                <select class="form-control" th:field="*{gender}">
+                                    <option th:each="genderValue: ${T(com.example.vacc_reg.model.Gender).values()}"
+                                            th:value="${genderValue.name()}"
+                                            th:text="${genderValue.name()}">val</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleDate">Date of Birth</label>
+                                <input type="date" class="form-control" id="exampleDate" required th:field="*{dateOfBirth}" placeholder="Enter Date-of-Birth">
+                            </div>
+                        <div class="form-group">
+                            <label>State:</label>
+                            <select class="form-control" th:field="*{state}">
+                                <option th:each="stateValue: ${T(com.example.vacc_reg.model.State).values()}"
+                                        th:value="${stateValue.name()}"
+                                        th:text="${stateValue.name()}">val</option>
+                            </select>
+                        </div>
+                            <div class="form-group">
+                                <label for="exampleLGA">L.G.A</label>
+                                <input type="text" class="form-control" id="exampleLGA" required th:field="*{lga}" placeholder="Enter L.G.A">
+                            </div>
+                        <div class="form-group">
+                            <label>Id_Type:</label>
+                            <select class="form-control" th:field="*{id_type}">
+                                <option th:each="id_typeValue: ${T(com.example.vacc_reg.model.Id_type).values()}"
+                                        th:value="${id_typeValue.name()}"
+                                        th:text="${id_typeValue.name()}">val</option>
+                            </select>
+                        </div>
+                            <div class="form-group">
+                                <label for="exampleVaccDate">Vaccination Date</label>
+                                <input type="date" class="form-control" id="exampleVaccDate" required th:field="*{vaccinationDate}" placeholder="Enter preferred Date">
+                            </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Apply</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
