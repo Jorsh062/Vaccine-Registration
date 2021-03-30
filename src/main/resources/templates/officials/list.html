@@ -8,12 +8,12 @@
     <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
     <link rel="stylesheet" href="../static/css/bootstrap.css">
 
-    <style>
+    <!--style>
         table, th, td {
             border: 2px solid darkslategrey;
             border-collapse: collapse;
         }
-    </style>
+    </style-->
 </head>
 <body>
 <header class="masthead mb-auto">
@@ -42,7 +42,7 @@
                         <span><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"></span>
                     </div>
                     <br>
-                    <table>
+                    <table border="2" class = "table table-striped table-responsive-md">
                         <thead style="text-emphasis: #0c63e4">
                         <tr>
                             <th>ID</th>
@@ -50,6 +50,7 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Residential Address</th>
+                            <th>Phone No</th>
                             <th>Gender</th>
                             <th>Date of Birth</th>
                             <th>State</th>
@@ -66,17 +67,17 @@
                             <td th:text="${book.user.getLastName()}"></td>
                             <td th:text="${book.user.getEmail()}"></td>
                             <td th:text="${book.residentialAddress}"></td>
+                            <td th:text="${book.phoneNumber}"></td>
                             <td th:text="${book.gender}"></td>
                             <td th:text="${book.dateOfBirth}"></td>
                             <td th:text="${book.state}"></td>
                             <td th:text="${book.lga}"></td>
                             <td th:text="${book.id_type}"></td>
-                            <td  >
+                            <td>
                                 <a th:if="${book.status}==${T(com.example.vacc_reg.model.Status).NOT_VACCINATED}"
                                    th:href="@{'/verify/' + ${book.id}}" >NOT VACCINATED</a>
                                 <p th:if="${book.status}==${T(com.example.vacc_reg.model.Status).VACCINATED}">VACCINATED</p>
                             </td>
-                            <td th:text="${book.id_type}"></td>
                         </tr>
                         </tbody>
                     </table>

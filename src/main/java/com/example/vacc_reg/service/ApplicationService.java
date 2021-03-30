@@ -1,9 +1,6 @@
 package com.example.vacc_reg.service;
 
-import com.example.vacc_reg.model.Application;
-import com.example.vacc_reg.model.Gender;
-import com.example.vacc_reg.model.State;
-import com.example.vacc_reg.model.User;
+import com.example.vacc_reg.model.*;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -30,6 +27,10 @@ public interface ApplicationService extends CrudService<Application, Long> {
     Long countApplicationsByGender(Gender gender);
 
     Long countApplicationsByState(State state);
+
+    Long countApplicationsByStatusAndState(Status status, State state);
+
+    Long countApplicationsByStatus(Status status);
 
 
 

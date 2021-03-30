@@ -13,7 +13,6 @@ public enum State {
     Delta,
     Ebonyi,
     Edo,
-    Benin,
     Ekiti,
     Enugu,
     FCT,

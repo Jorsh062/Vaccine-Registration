@@ -1,9 +1,6 @@
 package com.example.vacc_reg.service;
 
-import com.example.vacc_reg.model.Application;
-import com.example.vacc_reg.model.Gender;
-import com.example.vacc_reg.model.State;
-import com.example.vacc_reg.model.User;
+import com.example.vacc_reg.model.*;
 import com.example.vacc_reg.repository.ApplicationRepository;
 import com.example.vacc_reg.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -106,4 +103,16 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Long countApplicationsByState(State state) {
         return applicationRepository.countApplicationsByState(state);
     }
+
+    @Override
+    public Long countApplicationsByStatusAndState(Status status, State state) {
+        return applicationRepository.countApplicationsByStatusAndState(status,state);
+    }
+
+    @Override
+    public Long countApplicationsByStatus(Status status) {
+        return applicationRepository.countApplicationsByStatus(status);
+    }
+
+
 }

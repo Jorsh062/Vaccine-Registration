@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 @Getter
 @Setter
@@ -24,6 +24,10 @@ public class Application {
     @Column(name = "vaccinationDate")
     private String VaccinationDate;
 
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+
+    //@Past(message = "invalid date of birth")
     @Column(name = "dateOfBirth")
     private String dateOfBirth;
 

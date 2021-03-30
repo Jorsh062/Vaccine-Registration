@@ -1,9 +1,6 @@
 package com.example.vacc_reg.repository;
 
-import com.example.vacc_reg.model.Application;
-import com.example.vacc_reg.model.Gender;
-import com.example.vacc_reg.model.State;
-import com.example.vacc_reg.model.User;
+import com.example.vacc_reg.model.*;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -36,7 +33,9 @@ public interface ApplicationRepository extends CrudRepository<Application, Long>
 
     Long countApplicationsByState(State state);
 
-    //Application countApplicationsByVaccinationDate();
+    Long countApplicationsByStatus(Status status);
+
+    Long countApplicationsByStatusAndState(Status status, State state);
 
 
 }

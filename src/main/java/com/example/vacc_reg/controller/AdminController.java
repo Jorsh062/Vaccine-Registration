@@ -7,10 +7,8 @@ import com.example.vacc_reg.service.*;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +31,7 @@ public class AdminController {
         model.addAttribute("applicationService", applicationService);
         return "admin/admin";
     }
+
 
 
     @GetMapping("/admin/create")
