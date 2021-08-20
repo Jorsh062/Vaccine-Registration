@@ -1,4 +1,4 @@
 package com.example.vacc_reg.model;
 
-public enum Gender { MALE, FEMALE, TRANSGENDER, BLACK, WHITE
+public enum Gender { MALE, FEMALE
 }
